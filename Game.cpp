@@ -18,7 +18,7 @@ void Game::Run() {
 }
 
 void Game::Initialize() {
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(60);
     window.create(sf::VideoMode(800, 800),
                   "Air Traffic Controller",
                   sf::Style::Close | sf::Style::Titlebar);
@@ -50,6 +50,7 @@ void Game::HandleEvents() {
             case sf::Event::Closed:
                 window.close();
                 break;
+
             default:
                 break;
         }

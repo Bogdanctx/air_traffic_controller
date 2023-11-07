@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
+#include "Math.h"
 
 class Airplane {
 public:
@@ -17,13 +18,17 @@ public:
     void Update();
     void Render(sf::RenderTarget *window);
 private:
+    void InitializeText(sf::Vector2f position);
+
+    bool mAirplaneIsSelected;
+
     sf::RectangleShape mAirplane;
 
     sf::Text mCallsign;
     std::string mCallsignValue;
 
-    sf::Text mCurrentAltitude, mNewAltitude;
-    int mCurrentAltitudeValue, mNewAltitudeValue;
+    sf::Text mAltitude, mNewAltitude;
+    int mAltitudeValue, mNewAltitudeValue;
 
 
     sf::Text mSpeed, mNewSpeed;

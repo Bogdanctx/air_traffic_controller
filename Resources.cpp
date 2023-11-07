@@ -16,7 +16,7 @@ Resources::~Resources() = default;
 bool Resources::LoadFonts() {
     const std::string pathToFont = "../resources/fonts/";
 
-    for(std::string fontName: mListOfFonts) {
+    for(const std::string& fontName: mListOfFonts) {
         if(!mFonts[fontName].loadFromFile(pathToFont+fontName+".ttf")) {
             std::cout<<fontName<<" could not be loaded.\n";
             return true;
@@ -26,6 +26,6 @@ bool Resources::LoadFonts() {
     return false;
 }
 
-sf::Font* Resources::GetFont(const std::string fontName) {
+sf::Font* Resources::GetFont(const std::string& fontName) {
     return &mFonts[fontName];
 }

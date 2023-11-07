@@ -1,7 +1,8 @@
 #include "Game.h"
+#include <random>
 
 int main() {
-    srand(time(0));
+    srand(time(nullptr));
 
     Game game = Game();
 

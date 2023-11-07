@@ -16,7 +16,7 @@ public:
     ~Resources();
 
     bool LoadFonts();
-    sf::Font *GetFont(const std::string fontName);
+    sf::Font *GetFont(const std::string& fontName);
 
 private:
     std::unordered_map<std::string, sf::Font>mFonts;
