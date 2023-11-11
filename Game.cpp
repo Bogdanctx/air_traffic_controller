@@ -8,7 +8,7 @@ Game::Game() = default;
 
 void Game::Run() {
 
-    while(window.isOpen()) {
+    while(mWindow.isOpen()) {
         HandleEvents();
         Update();
         Render();
@@ -18,37 +18,55 @@ void Game::Run() {
 }
 
 void Game::Initialize() {
-    //window.setFramerateLimit(60);
-    window.create(sf::VideoMode(800, 800),
+    mWindow.setFramerateLimit(60);
+    mWindow.create(sf::VideoMode(800, 800),
                   "Air Traffic Controller",
                   sf::Style::Close | sf::Style::Titlebar);
 
-    if(resources.LoadFonts()) { // has error
-        window.close();
+    if(mResources.LoadFonts()) { // has error
+        mWindow.close();
     }
-    airplane = Airplane(&resources);
+    Airplane airplane = Airplane(&mResources);
+    mAirplanes.push_back(airplane);
+    airplane = Airplane(&mResources);
+    mAirplanes.push_back(airplane);
 }
 
 void Game::Update() {
-    airplane.Update();
+    sf::Vector2i cursorPosition = sf::Mouse::getPosition(mWindow);
+    for(auto &it: mAirplanes) {
+        it.Update(sf::Vector2f(cursorPosition.x, cursorPosition.y));
+    }
 }
 
 void Game::Render() {
-    window.clear();
+    mWindow.clear();
 
     // Draw things
-    airplane.Render(&window);
+    for(auto &it: mAirplanes) {
+        it.Render(&mWindow);
+    }
 
-
-    window.display();
+    mWindow.display();
 
 }
 
 void Game::HandleEvents() {
-    while(window.pollEvent(gameEvent)) {
-        switch (gameEvent.type) {
+    sf::Vector2i cursorPosition = sf::Mouse::getPosition(mWindow);
+    while(mWindow.pollEvent(mGameEvent)) {
+        switch (mGameEvent.type) {
             case sf::Event::Closed:
-                window.close();
+                mWindow.close();
+                break;
+            case sf::Event::MouseButtonPressed:
+                if(mGameEvent.mouseButton.button == sf::Mouse::Left) {
+                    for(auto &it: mAirplanes) {
+                        it.HandleEvent(&mGameEvent);
+                    }
+                }
+                break;
+            case sf::Event::KeyPressed:
+
                 break;
 
             default:

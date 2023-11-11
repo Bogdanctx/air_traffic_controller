@@ -14,8 +14,12 @@ public:
 
     constexpr static const double PI  = 3.14159265;
 
-    static sf::Vector2f GetPositionToDirection(double speed, double direction);
-    static double ConvertDegreesToRadians(double degrees);
+    static int GetDirectionToPoint(sf::Vector2f origin, sf::Vector2f point);
+    static sf::Vector2f TranslatePositionToPoint(double speed, double direction);
+private:
+    static double degrees(double x);
+    static double radians(double x);
+
 };
 
 #endif //AIR_TRAFFIC_CONTROLLER_MATH_H

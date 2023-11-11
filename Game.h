@@ -23,12 +23,12 @@ private:
     void Update();
     void Render();
 
-    Airplane airplane;
-    Resources resources;
+    std::vector<Airplane>mAirplanes;
+    Resources mResources;
 
-    sf::RenderWindow window;
+    sf::RenderWindow mWindow;
 
-    sf::Event gameEvent{};
+    sf::Event mGameEvent{};
 };
 
 
