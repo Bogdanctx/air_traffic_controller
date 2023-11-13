@@ -1,0 +1,3 @@
+C:/Users/bobot/Desktop/air_traffic_controller/cmake-build-debug/CMakeFiles/air_traffic_controller.dir
+C:/Users/bobot/Desktop/air_traffic_controller/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bobot/Desktop/air_traffic_controller/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -244,7 +244,6 @@ void Airplane::UpdateTextPosition(sf::Vector2f position) {
 
     mHeadingStick.setPosition(position.x, position.y);
     mHeading.setPosition(position.x - 20 + mCallsign.getLocalBounds().width + 5,position.y-40);
-    //mNewHeading = mHeading;
     mNewHeading.setPosition(mHeading.getPosition().x + mHeading.getLocalBounds().width + 5, position.y - 40);
     mAltitude.setPosition(position.x - 20,position.y - 30);
     mNewAltitude.setPosition(position.x - 20 + mAltitude.getLocalBounds().width + 5,position.y - 30);
