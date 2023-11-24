@@ -16,6 +16,8 @@ public:
 
     static int GetDirectionToPoint(sf::Vector2f origin, sf::Vector2f point);
     static sf::Vector2f TranslatePositionToPoint(double speed, double direction);
+    static double GetDistance(sf::Vector2f a, sf::Vector2f b);
+
 private:
     static double degrees(double x);
     static double radians(double x);

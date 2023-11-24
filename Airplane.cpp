@@ -68,9 +68,30 @@ Airplane::~Airplane() = default;
 void Airplane::Update(sf::Vector2f cursorPosition) {
     mCursorPosition = cursorPosition;
 
+    if(mFlags[AIRPLANE_FLAGS::SAFE_COLLISION_DISTANCE] == true && mFlags[AIRPLANE_FLAGS::DANGER_COLLISION_DISTANCE] == false) {
+        mAirplane.setFillColor(sf::Color(181, 101, 25));
+    }
+    else if(mFlags[AIRPLANE_FLAGS::DANGER_COLLISION_DISTANCE]) {
+        mAirplane.setFillColor(sf::Color::Red);
+    }
+    else {
+        mAirplane.setFillColor(sf::Color::White);
+    }
+
     MoveAirplane();
     UpdateTextPosition(mAirplane.getPosition());
     HandleDataChange();
+}
+
+void Airplane::SetFlag(const AIRPLANE_FLAGS flag) {
+    mFlags[flag] = true;
+}
+void Airplane::ResetFlag(const AIRPLANE_FLAGS flag) {
+    mFlags[flag] = false;
+}
+
+sf::FloatRect Airplane::GetBounds() {
+    return mAirplane.getGlobalBounds();
 }
 
 void Airplane::MoveAirplane() {
@@ -100,6 +121,24 @@ void Airplane::Render(sf::RenderTarget *pWindow) {
         pWindow->draw(mNewSpeed);
     }
 
+}
+
+int Airplane::GetAltitude() {
+    return mAltitudeValue;
+}
+
+void Airplane::SetTCAS(const int code) {
+    mTCAS = code;
+
+    switch(code) {
+        case 1: // moderatly close
+            break;
+        case 2:
+            mAirplane.setFillColor(sf::Color::Red);
+            break;
+        default:
+            break;
+    }
 }
 
 void Airplane::DetectNewHeading() {
@@ -249,4 +288,8 @@ void Airplane::UpdateTextPosition(sf::Vector2f position) {
     mNewAltitude.setPosition(position.x - 20 + mAltitude.getLocalBounds().width + 5,position.y - 30);
     mSpeed.setPosition(position.x - 20,position.y - 20);
     mNewSpeed.setPosition(position.x - 20 + mSpeed.getLocalBounds().width + 5,position.y - 20);
+}
+
+sf::Vector2f Airplane::GetPosition() {
+    return mAirplane.getPosition();
 }

@@ -14,6 +14,12 @@ int Math::GetDirectionToPoint(sf::Vector2f origin, sf::Vector2f point) {
     return d;
 }
 
+double Math::GetDistance(sf::Vector2f a, sf::Vector2f b) {
+    float x = a.x - b.x;
+    float y = a.y - b.y;
+    return sqrt(x*x+y*y);
+}
+
 sf::Vector2f Math::TranslatePositionToPoint(double speed, double direction) {
     sf::Vector2f p(
             sin(radians(direction)) * speed / 100,

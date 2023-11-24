@@ -15,7 +15,6 @@ class Game {
 public:
     Game();
 
-    void Initialize();
     void Run();
 
 private:
@@ -23,11 +22,12 @@ private:
     void Update();
     void Render();
 
+    void DetectCollisions();
+
     std::vector<Airplane>mAirplanes;
     Resources mResources;
 
     sf::RenderWindow mWindow;
-
     sf::Event mGameEvent{};
 };
 

@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
 #include "Math.h"
+#include "enums.h"
 
 class Airplane {
 public:
@@ -18,6 +19,14 @@ public:
     void Update(sf::Vector2f cursorPosition);
     void Render(sf::RenderTarget *pWindow);
     void HandleEvent(sf::Event *pEvent);
+
+    int GetAltitude();
+    sf::Vector2f GetPosition();
+    void SetTCAS(const int code);
+    void SetFlag(const AIRPLANE_FLAGS flag);
+    void ResetFlag(const AIRPLANE_FLAGS flag);
+    sf::FloatRect GetBounds();
+
 private:
     void UpdateTextPosition(sf::Vector2f position);
     void MoveAirplane();
@@ -29,10 +38,14 @@ private:
 
     bool mAirplaneIsSelected{};
 
+    std::vector<bool>mFlags = {false, false};
+
     sf::RectangleShape mAirplane;
 
     sf::Text mCallsign;
     std::string mCallsignValue;
+
+    int mTCAS;
 
     sf::Text mAltitude, mNewAltitude;
     int mAltitudeValue, mNewAltitudeValue;
